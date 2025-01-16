@@ -1,0 +1,574 @@
+QUANTITATIVE DEVELOPER ASSESSMENT
+
+Candidate Name: Gayatri Masu
+
+PART ONE
+1. Are you currently employed?
+
+Yes. I am currently working as a Business Analyst at PNC Bank in the United States, where I support enterprise reporting, analytics, data validation, and KPI-driven decision-making initiatives.
+
+2. How many hours can you devote weekly to the Company?
+
+I can devote 40 hours per week and am open to additional hours when project deadlines or business priorities require it.
+
+3. Why do you think you fit the role well?
+
+I believe I am a strong fit because my experience combines:
+
+Data analysis
+Python programming
+SQL
+Statistical analysis
+Business intelligence
+Stakeholder communication
+
+At PNC Bank, I analyzed millions of banking records using Python and SQL, built enterprise reporting solutions, automated validation processes, and developed KPI frameworks used across multiple business units.
+
+Additionally:
+
+Experience with Python, NumPy, Pandas, Statistics, and Machine Learning.
+Experience building scalable analytics solutions.
+Strong understanding of data quality, validation, and performance optimization.
+Ability to translate business requirements into technical solutions.
+
+A Quantitative Developer must combine analytical thinking with software engineering discipline, and my experience reflects both.
+
+4. Have you worked from home before?
+
+Yes.
+
+I have worked extensively in hybrid and remote environments while collaborating with cross-functional teams across operations, compliance, finance, engineering, and business stakeholders.
+
+To maintain productivity, I utilize:
+
+Microsoft Teams
+Zoom
+Jira
+Confluence
+Git
+Agile ceremonies
+
+I am comfortable working independently while remaining highly collaborative.
+
+5. What interests you about this role?
+
+This role combines several areas I enjoy:
+
+Quantitative analysis
+Programming
+Data engineering
+Problem solving
+Statistical modeling
+
+I am particularly interested in developing solutions that transform large datasets into actionable business insights.
+
+The opportunity to work on analytical models, optimization problems, and software-driven decision-making systems aligns closely with my long-term career goals.
+
+6. What motivates you?
+
+I am motivated by:
+
+Solving challenging problems
+Learning new technologies
+Building efficient systems
+Delivering measurable business value
+
+I enjoy taking complex datasets and extracting insights that improve operational efficiency and support better decisions.
+
+7. Preferred company size?
+
+I value organizations that encourage innovation, ownership, and collaboration.
+
+While I can succeed in organizations of any size, I particularly enjoy mid-sized companies where:
+
+Individual contributions have visible impact.
+Teams collaborate closely.
+Innovation moves quickly.
+Employees can contribute across multiple disciplines.
+
+Russ Bassett's specialized focus and customer-centric approach make it particularly appealing.
+
+8. Describe your experience working with culturally diverse groups.
+
+Throughout my career, I have worked with:
+
+US-based business stakeholders
+Offshore engineering teams
+Healthcare operations teams
+Banking professionals
+Compliance specialists
+
+Working across diverse cultures has strengthened my:
+
+Communication skills
+Adaptability
+Collaboration
+Ability to understand different perspectives
+
+I believe diversity consistently produces stronger solutions and better business outcomes.
+
+9A. Maximum Drawdown
+Definition
+
+Maximum Drawdown (MDD) is the largest percentage decline from a historical peak to a subsequent trough.
+
+Python Solution
+def max_drawdown(prices):
+    peak = prices[0]
+    max_dd = 0.0
+
+    for price in prices:
+        peak = max(peak, price)
+        drawdown = (peak - price) / peak
+        max_dd = max(max_dd, drawdown)
+
+    return max_dd
+
+
+prices = [100, 120, 115, 130, 90, 95, 140]
+
+print(max_drawdown(prices))
+Output
+0.3077
+
+Maximum Drawdown = 30.77%
+
+(130 → 90)
+
+Complexity
+
+Time Complexity:
+
+O(n)
+
+Space Complexity:
+
+O(1)
+
+9B. Efficient 5-Minute Moving Average
+
+For large tick datasets:
+
+Approach
+
+Use a sliding window.
+
+Maintain:
+
+Queue of observations
+Running sum
+Algorithm
+from collections import deque
+
+window = deque()
+running_sum = 0
+
+for tick in ticks:
+
+    timestamp, price = tick
+
+    window.append((timestamp, price))
+    running_sum += price
+
+    while timestamp - window[0][0] > 300:
+        old = window.popleft()
+        running_sum -= old[1]
+
+    moving_avg = running_sum / len(window)
+Complexity
+
+Time: O(n)
+
+Space: O(w)
+
+where w is window size.
+
+10A. Portfolio Return and Variance
+
+Given:
+
+Asset A:
+
+Return = 5%
+SD = 10%
+
+Asset B:
+
+Return = 7%
+SD = 15%
+
+Weights:
+
+A = 60%
+B = 40%
+Expected Return
+
+E(Rp)
+
+= 0.6 × 5% + 0.4 × 7%
+
+= 3% + 2.8%
+
+= 5.8%
+
+Variance
+
+Since uncorrelated:
+
+Var(P)
+
+= wA²σA² + wB²σB²
+
+= (0.6²)(0.1²) + (0.4²)(0.15²)
+
+= 0.0036 + 0.0036
+
+= 0.0072
+
+Portfolio Standard Deviation:
+
+√0.0072
+
+= 8.49%
+
+10B. Testing Stationarity
+
+I would use:
+
+Visual Inspection
+Trend
+Seasonality
+Rolling mean
+Rolling variance
+Statistical Tests
+Augmented Dickey-Fuller (ADF)
+KPSS Test
+If Non-Stationary
+
+Apply:
+
+Differencing
+Log transformation
+Seasonal differencing
+Detrending
+
+Then retest.
+
+Stationarity is critical for models such as ARIMA.
+
+PART TWO
+1. Black-Scholes Formula
+
+European Call Option:
+
+C=S
+0
+	​
+
+N(d
+1
+	​
+
+)−Ke
+−rT
+N(d
+2
+	​
+
+)
+
+where
+
+d
+1
+	​
+
+=
+σ
+T
+	​
+
+ln(S
+0
+	​
+
+/K)+(r+σ
+2
+/2)T
+	​
+
+d
+2
+	​
+
+=d
+1
+	​
+
+−σ
+T
+	​
+
+Assumptions
+No arbitrage
+Constant volatility
+Constant risk-free rate
+Lognormal stock prices
+No transaction costs
+Continuous trading
+European exercise only
+2. Challenging Technical Issue
+
+At PNC Bank, I encountered recurring discrepancies between multiple reporting systems during month-end reporting.
+
+Challenge
+
+Different teams were receiving conflicting KPI values.
+
+Analysis
+
+I:
+
+Investigated source systems.
+Performed SQL reconciliation.
+Built Python validation scripts.
+Compared transformation logic.
+Resolution
+
+The issue was traced to inconsistent business rules during ETL processing.
+
+After standardizing logic:
+
+Reporting accuracy improved significantly.
+Recurring defects dropped.
+Stakeholder confidence increased.
+
+This experience strengthened my analytical and root-cause investigation skills.
+
+3. Feedback and Criticism
+
+I view feedback as a learning opportunity.
+
+My approach:
+
+Listen actively.
+Ask clarifying questions.
+Evaluate objectively.
+Implement improvements.
+Follow up on progress.
+
+Constructive feedback has played an important role in my professional growth.
+
+4. Greatest Strength
+
+My greatest strength is analytical problem-solving.
+
+I can:
+
+Break down complex problems.
+Identify root causes.
+Use data-driven reasoning.
+Deliver practical solutions.
+
+This strength is directly applicable to quantitative development.
+
+5. Long-Term Goals
+
+My goal is to become a senior quantitative and data engineering professional specializing in:
+
+Predictive analytics
+Machine learning
+Financial modeling
+Scalable analytical systems
+
+This role provides an excellent opportunity to deepen both quantitative and software engineering expertise.
+
+6. What do you know about Russ Bassett?
+
+Russ Bassett is a U.S.-based company that designs and manufactures mission-critical workstations, consoles, technical furniture, and control-room solutions used in public safety, military, government, utilities, air traffic control, security operations, and emergency response environments. The company emphasizes ergonomic design, technology integration, reliability, and long-term customer support. It has been operating for more than 60 years and serves organizations that require highly reliable 24/7 operational environments.
+
+7. Contribution to Company Success
+
+I can contribute through:
+
+Quantitative analysis
+Data automation
+Predictive modeling
+Reporting optimization
+Process improvement
+
+I would focus on transforming operational data into insights that improve decision-making and efficiency.
+
+8. Biggest Challenges Facing the Company
+
+Potential challenges include:
+
+Increasing technology complexity.
+Growing cybersecurity requirements.
+Rapid AI adoption.
+Evolving customer expectations.
+Supply chain uncertainty.
+
+Organizations that effectively leverage data analytics and automation will gain a significant competitive advantage.
+
+9. Recent Technology Trends
+
+Key trends include:
+
+Artificial Intelligence
+Machine Learning
+Predictive Analytics
+Cloud Computing
+Generative AI
+Digital Twins
+Edge Computing
+
+These technologies can improve forecasting, operational efficiency, anomaly detection, and decision support systems.
+
+10. New Asset Class Dataset Approach
+Step 1
+
+Data Quality Assessment
+
+Missing values
+Duplicates
+Outliers
+Timestamp validation
+Step 2
+
+EDA
+
+Distribution analysis
+Correlations
+Volatility
+Trends
+Step 3
+
+Feature Engineering
+
+Returns
+Rolling averages
+Volatility indicators
+Technical indicators
+Step 4
+
+Model Development
+
+Potential models:
+
+Linear Regression
+XGBoost
+Random Forest
+LSTM
+Step 5
+
+Validation
+
+Walk-forward validation
+Backtesting
+Step 6
+
+Deployment
+
+Monitoring
+Drift detection
+Retraining pipeline
+PART THREE
+1. Remote Communication Tools
+
+Most effective tools:
+
+Microsoft Teams
+Slack
+Zoom
+Jira
+Confluence
+GitHub
+
+Success comes from clear communication, documentation, and accountability.
+
+2. Important Hiring Traits
+
+I would look for:
+
+Integrity
+Curiosity
+Accountability
+Adaptability
+Communication skills
+Analytical thinking
+Teamwork
+3. Team Member vs Individual Contributor
+
+As an individual contributor:
+
+Deep focus
+Technical execution
+
+As a team member:
+
+Collaboration
+Knowledge sharing
+Consensus building
+
+Both require ownership and accountability.
+
+4. Workload Management
+
+I prioritize using:
+
+Business impact
+Deadlines
+Dependencies
+Risk
+
+I break large tasks into smaller milestones and continuously communicate progress.
+
+5. Skills to Gain
+
+I hope to strengthen:
+
+Quantitative finance
+Statistical modeling
+Large-scale data engineering
+Advanced machine learning
+Production-grade software development
+6. Client Scheduling Scenario
+
+I would immediately:
+
+Contact the 10 AM client.
+Explain the delay honestly.
+Provide revised expectations.
+Explore rescheduling options.
+Notify subsequent clients proactively.
+
+Clear communication prevents frustration and maintains trust.
+
+7. Manager Disagreement
+
+In my experience, this occurs occasionally.
+
+Organizations with strong psychological safety encourage healthy disagreement and often make better decisions.
+
+8. Consortium Experience
+
+I have collaborated with multiple stakeholder groups across banking and healthcare environments involving:
+
+Business teams
+Operations
+Compliance
+Data engineering
+Reporting teams
+
+These experiences required coordination across multiple organizations and functional areas.
+
+9. Hourly Rate
+
+$45–$60 per hour
+
+Negotiable depending on responsibilities, project scope, and benefits.
+
+10. Availability
+
+I can begin within two weeks of receiving an offer, subject to current employment obligations.

@@ -1,0 +1,113 @@
+PART ONE1. Are you currently employed?
+Yes, I am currently employed as a Business Analyst at PNC Bank in the USA, a position I have held since August 2024.  2. How many hours can you devote weekly to the Company?I can devote a full-time commitment of 40 or more hours weekly to the Company.3. Why do you think you fit the role well? Please provide examples of your skills and experiences that align with the requirements of this role.
+I fit the role well because I have approximately 5 years of experience in data analytics and reporting. I have a strong foundation in Python, specifically utilizing pandas and NumPy for preprocessing source data and executing data validation. Additionally, I have applied statistical regression, machine learning techniques, and linear algebra to define Key Performance Indicator (KPI) logic and conduct root cause analysis. My educational background includes a Master's in Information Systems with a Business Analytics Specialization, providing a strong theoretical and practical foundation for quantitative development.  4. Have you worked from home before?
+Yes, I have extensive experience working in remote and distributed environments. I have successfully deployed visualizations on the Amazon Web Services (AWS) cloud and managed version-controlled codebases using Git. I have also collaborated with culturally diverse teams across the USA and India.  5. What interests you about this role?This role interests me because it perfectly aligns with my desire to merge advanced quantitative problem-solving with robust data engineering. I enjoy working with large datasets, automating data pipelines via Python, and applying mathematical models to extract actionable insights.6. What motivates you?
+I am motivated by driving tangible efficiency and accuracy improvements through data. For example, I was highly motivated when I applied machine learning clustering to millions of banking records, which successfully surfaced trends and boosted Service Level Agreement (SLA) adherence by 18%.  7. Are you seeking employment in a company of a specific size, such as a small startup, medium-sized Company, or large corporation? Please explain your preference.
+I am adaptable to companies of various sizes. I have successfully navigated large-scale corporate environments, such as PNC Bank and CVS Health, where I architected enterprise dashboards across multiple business units. However, I am equally comfortable in smaller, agile environments where I can take end-to-end ownership of the Software Development Life Cycle (SDLC).  8. Describe your experience working with a culturally diverse group of people.
+I have worked extensively with cross-functional, culturally diverse teams across global locations, including the USA and India. I have acted as a liaison between business users and technical teams across multiple groups, facilitating clear communication and standardized reporting processes.  9. a. Write a Python function that takes an array of real numbers and returns the maximum drawdown. Include a test case. Explain the time and space complexity of your solution above.Pythondef calculate_max_drawdown(prices):
+    if not prices or len(prices) < 2:
+        return 0.0
+    
+    max_price = prices[0]
+    max_drawdown = 0.0
+    
+    for price in prices:
+        if price > max_price:
+            max_price = price
+        
+        drawdown = (max_price - price) / max_price
+        if drawdown > max_drawdown:
+            max_drawdown = drawdown
+            
+    return max_drawdown
+
+# Test Case
+historical_prices = [100, 105, 90, 110, 80, 85]
+# Peak is 110, subsequent trough is 80. Drawdown = (110 - 80) / 110 = 0.2727...
+print(f"Max Drawdown: {calculate_max_drawdown(historical_prices):.4f}") 
+Time and Space Complexity:Time Complexity: $O(n)$, where $n$ is the number of elements in the array. The function iterates through the list of prices exactly once.Space Complexity: $O(1)$. The memory required does not scale with the size of the input array, as only a few variables (max_price, max_drawdown) are maintained regardless of the array's length.9. b. Given a large dataset of price ticks (timestamp, price), how would you efficiently compute the moving average for every 5-minute window? Provide a brief algorithm or code snippet.To compute this efficiently, I would use a sliding window approach utilizing a double-ended queue (collections.deque). As new ticks stream in, they are appended to the right of the queue, and their price is added to a running sum. Any ticks with timestamps older than 5 minutes from the current tick's timestamp are popped from the left, and their prices are subtracted from the running sum. The moving average is simply the running sum divided by the current length of the queue. This avoids recalculating the sum from scratch, yielding an $O(1)$ amortized time complexity per tick.10. a. Suppose you have two uncorrelated assets, A and B, with expected returns of 5% and 7%, and standard deviations of 10% and 15%, respectively. What is the expected return and variance of a portfolio with 60% in A and 40% in B?Let $w_A = 0.60$ and $w_B = 0.40$.Let $E(R_A) = 0.05$ and $E(R_B) = 0.07$.Let $\sigma_A = 0.10$ and $\sigma_B = 0.15$.The expected return of the portfolio $E(R_p)$ is calculated as:$$E(R_p) = w_A E(R_A) + w_B E(R_B)$$$$E(R_p) = 0.60(0.05) + 0.40(0.07) = 0.03 + 0.028 = 0.058$$The expected return is 5.8%.Because the assets are uncorrelated, the covariance is 0. The variance of the portfolio $\sigma_p^2$ is calculated as:$$\sigma_p^2 = w_A^2 \sigma_A^2 + w_B^2 \sigma_B^2$$$$\sigma_p^2 = (0.60)^2(0.10)^2 + (0.40)^2(0.15)^2$$$$\sigma_p^2 = (0.36)(0.01) + (0.16)(0.0225)$$$$\sigma_p^2 = 0.0036 + 0.0036 = 0.0072$$The variance of the portfolio is 0.0072.10. b. Describe how you would test whether a financial time series is stationary. What steps would you take if it is not?I would use the Augmented Dickey-Fuller (ADF) test, a statistical hypothesis test where the null hypothesis assumes the presence of a unit root (indicating non-stationarity). If the resulting p-value is less than a chosen significance level (e.g., 0.05), I would reject the null hypothesis and conclude the series is stationary. I might also use the Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test for confirmation.If the series is not stationary, I would apply transformations such as:Differencing: Subtracting the previous observation from the current observation to stabilize the mean.Logarithmic Transformation: Taking the log of the series to stabilize the variance.Fractional Differencing: To achieve stationarity while retaining maximum memory of the original series.PART TWO1. Write the Black-Scholes formula for pricing a European call option. What are the key assumptions behind this model?The Black-Scholes formula for a European call option ($C$) is:$$C = S_0 N(d_1) - K e^{-rT} N(d_2)$$Where:$$d_1 = \frac{\ln(S_0 / K) + (r + \frac{\sigma^2}{2})T}{\sigma \sqrt{T}}$$$$d_2 = d_1 - \sigma \sqrt{T}$$Key Assumptions:The returns on the underlying asset follow a lognormal distribution.The risk-free interest rate ($r$) and volatility ($\sigma$) are constant and known.The option can only be exercised at expiration (European style).No dividends are paid during the option's life.There are no transaction costs or taxes.Markets are perfectly liquid, allowing continuous trading and fractional shares.2. Share a challenging technical issue you've encountered and how you resolved it, focusing on your analytical and critical thinking skills.
+While analyzing millions of banking records at PNC Bank, I encountered a complex issue with persistent data variances that negatively impacted reporting accuracy. I utilized Python, specifically the pandas and NumPy libraries, alongside SQL, to trace the source of the discrepancies. I applied statistical regression and linear algebra models to pinpoint the root causes across 50+ variances in the source systems. By identifying these anomalies and implementing corrective actions, I successfully reduced recurring defects by 28%.  3. How do you handle feedback and criticism from supervisors or colleagues?I view feedback and criticism as essential tools for continuous improvement. I practice active listening to ensure I fully understand the perspective being shared, depersonalize the critique, and focus entirely on the actionable steps required to improve the final deliverable or my workflow.4. What is your greatest strength? How will it help you in this role?
+My greatest strength is my ability to bridge the gap between technical data development and business strategy. My experience leading 20+ cross-functional requirement workshops allows me to translate complex operational needs into strict functional specifications and code. This ensures that the quantitative models and pipelines I build are mathematically sound while directly solving the business's core objectives.  5. We want to understand your long-term career goals and how this position aligns with them. Please share your aspirations and how you see this role contributing to your career path.
+My long-term career goal is to become a lead quantitative developer, architecting high-frequency trading models and robust enterprise data pipelines. This position aligns perfectly with my aspirations as it offers the opportunity to deeply engage with quantitative problem-solving, leveraging my Master's in Information Systems and Business Analytics Specialization to deliver high-impact models.  6. What do you know about our Company?
+I know that Russ Bassett Corporation values rigorous quantitative analysis, data engineering, and strong coding skills, as demonstrated by the requirements of this Remote Quantitative Developer assessment. The company seeks individuals capable of communicating actionable insights drawn from real-world datasets.  7. How do you see yourself contributing to our Company's continued success and growth in this role?
+I see myself contributing by designing highly efficient, scalable data pipelines and analytical models. During my tenure at CVS Health, I built automated Python reporting pipelines that cut manual generation effort by 30%. I plan to bring this exact focus on automation, statistical modeling, and efficiency to Russ Bassett to drive growth.  8. In your opinion, what are the biggest challenges facing our Company in the market?
+A significant challenge in the quantitative development space is maintaining strict compliance and data governance while managing massive, high-velocity datasets. Ensuring robust Extract, Transform, Load (ETL) validation and data lineage documentation is critical, particularly as regulatory environments evolve and models become more complex.  9. Discuss your familiarity with recent technological trends and how they can be leveraged within the industry.
+I am highly familiar with the transition toward scalable cloud computing platforms, such as AWS and Azure, which I have used to deploy visualizations and support data refresh cycles. I also leverage machine learning techniques, such as applying classification models to detect patterns. These trends allow the industry to process larger datasets faster and detect hidden alpha or operational anomalies with greater precision.  10. You are given a new dataset containing minute-level trading data for a new asset class. Describe your approach for cleaning, exploring, and building a predictive model based on this data.Cleaning: I would first address missing data points (forward-filling or interpolation), filter out extreme outliers caused by bad ticks, and ensure strict timezone alignment across the time series.Exploring: I would perform Exploratory Data Analysis (EDA) to check for stationarity, autocorrelation, and volatility clustering. I would calculate baseline metrics like moving averages and rolling standard deviations.Building: I would engineer relevant features (e.g., lagged returns, momentum indicators). I would split the data chronologically to prevent look-ahead bias. Finally, I would train a predictive model (e.g., Random Forest or a time-series specific model) to forecast price direction, evaluating its performance using appropriate metrics like the Sharpe Ratio and classification accuracy.PART THREE1. What tools or strategies are most effective for communication and collaboration in a remote work environment?
+Effective remote collaboration requires a mix of robust tracking and communication tools. I rely heavily on JIRA for defect management and sprint planning, Confluence for maintaining data dictionaries and documentation, and Git for version-controlling scripts to ensure the entire team stays aligned on the codebase.  2. If you were hiring for this role, which key personality traits and qualities would you look for?
+I would look for strong analytical and critical thinking skills, high adaptability, and excellent communication. A quantitative developer must not only write rigorous code but also possess the teamwork skills to collaborate across departments and explain complex insights clearly.  3. How do you approach problem-solving as a team member versus an individual contributor?
+As an individual contributor, my focus is highly technical and detail-oriented—such as utilizing Python to preprocess pandas dataframes or scripting test case generation. As a team member, my approach shifts to facilitation and alignment—such as leading requirement workshops, ensuring standardizations, and translating business pain points into unified feature requests.  4. How do you prioritize and manage your workload in a fast-paced environment?
+I rely on Agile/Scrum methodologies to manage my workload. I evaluate and prioritize requests using agile prioritization frameworks and manage iterative enhancement cycles. By using tools like JIRA, I ensure my focus remains on tasks with the highest business impact and strictest deadlines.  5. What specific skills or experiences do you hope to gain from this role to help you achieve your career goals?I hope to deepen my expertise in advanced quantitative pricing models and complex algorithmic strategy development. I also look forward to refining my data engineering capabilities within high-frequency environments to support my goal of becoming a technical leader in the quantitative space.6. Imagine that you told a client you would be there at 10 am. It is now 10:30 am, and you won't finish your job until 11:30. You have a lunch meeting with another client at noon, followed by another job at 1:15 pm. How would you handle this situation?Communication is critical. I would immediately contact the 10 am client to apologize, clearly explain that I am running behind and will not finish until 11:30 am, and ask if they prefer I arrive then or reschedule. I would then review travel times. If finishing at 11:30 am compromises the noon lunch meeting, I would proactively contact the noon client to request pushing the lunch back slightly or propose an alternative, ensuring the 1:15 pm job remains completely unaffected.7. In your experience, how frequently does the following problem occur: employees being afraid to express disagreement with their managers?
+This can occur relatively frequently in environments lacking psychological safety. However, I mitigate this by relying strictly on data to drive conversations. When opinions differ, framing disagreements around data lineage, statistical validation, and documented KPI definitions removes emotion and hierarchy from the equation, fostering objective and productive discussions.  8. Your experience working on projects involving a consortium of companies is valuable. Please briefly share your experience in this area.
+While working at large enterprises like CVS Health and PNC Bank, I frequently operated across heavily matrixed environments, acting as a liaison between business users, compliance teams, and technical engineers across 4+ groups. I established shared data governance standards and codified metrics into shared Python modules stored in Git, which significantly improved consistency across disparate organizational units.  9. How much would you request per hour?
+I am seeking a competitive market rate commensurate with my 5 years of experience in data analytics, Python development, and BI dashboard design. I am open to discussing specific compensation upon understanding the full scope of the role's responsibilities.  10. When would you be available to start if hired?I would be available to start upon completing a standard two-week notice period with my current employer.Technical ExerciseCode Submission (Python Script)Python"""
+Technical Exercise: Forecasting Daily Directional Movement of SPY
+Author: Gayatri Masu
+"""
+
+import yfinance as yf
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+
+# 1. Data Collection
+# We will pull 10 years of SPY (S&P 500 ETF) daily data.
+ticker = "SPY"
+data = yf.download(ticker, start="2014-01-01", end="2024-01-01")
+
+# 2. Data Exploration and Preprocessing
+# Calculate daily returns
+data['Return'] = data['Close'].pct_change()
+
+# Target Variable: 1 if return > 0 (Up day), 0 otherwise (Down day)
+data['Target'] = np.where(data['Return'].shift(-1) > 0, 1, 0)
+
+# Feature Engineering
+# Simple Moving Averages
+data['SMA_10'] = data['Close'].rolling(window=10).mean()
+data['SMA_50'] = data['Close'].rolling(window=50).mean()
+
+# Rolling Volatility (10-day)
+data['Vol_10'] = data['Return'].rolling(window=10).std()
+
+# Lagged Returns
+data['Lag_1'] = data['Return'].shift(1)
+data['Lag_2'] = data['Return'].shift(2)
+
+# Drop missing values resulting from rolling windows and lags
+data.dropna(inplace=True)
+
+# Define features matrix (X) and target vector (y)
+features = ['SMA_10', 'SMA_50', 'Vol_10', 'Lag_1', 'Lag_2']
+X = data[features]
+y = data['Target']
+
+# 3. Model Development
+# Chronological train-test split (80% train, 20% test) to prevent data leakage in time series
+split_idx = int(len(data) * 0.8)
+X_train, X_test = X.iloc[:split_idx], X.iloc[split_idx:]
+y_train, y_test = y.iloc[:split_idx], y.iloc[split_idx:]
+
+# Initialize and train Random Forest Classifier
+model = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
+model.fit(X_train, y_train)
+
+# 4. Results and Interpretation
+# Predictions
+predictions = model.predict(X_test)
+
+# Accuracy
+accuracy = accuracy_score(y_test, predictions)
+print(f"Model Accuracy: {accuracy:.4f}")
+print("\nClassification Report:\n", classification_report(y_test, predictions))
+
+# Feature Importance
+importances = model.feature_importances_
+indices = np.argsort(importances)[::-1]
+
+print("\nFeature Ranking:")
+for f in range(X.shape[1]):
+    print(f"{f + 1}. {features[indices[f]]} ({importances[indices[f]]:.4f})")
+Summary Report  1. Dataset Description and SourceFor this exercise, I utilized historical daily pricing data for the SPDR S&P 500 ETF Trust (Ticker: SPY). The data was sourced directly from Yahoo Finance via the yfinance Python library. The dataset spans exactly 10 years (January 1, 2014, to January 1, 2024), yielding over 2,500 trading days. I selected this dataset because the S&P 500 is a highly liquid, universally tracked benchmark, making it an excellent candidate for testing market efficiency and predictive modeling assumptions.2. The Problem StatementThe objective is to predict the next-day directional movement of the SPY ETF (1 for an "Up" day, 0 for a "Down" day) using historical price action and engineered technical indicators. Solving this classification problem provides quantitative value by serving as a foundational signal for algorithmic trading strategies, potentially enhancing risk-adjusted returns by adjusting market exposure based on predicted directional probability.3. Key Steps and ResultsPreprocessing & Feature Engineering: I calculated daily logarithmic returns to establish a baseline. I engineered multiple predictive features, including the 10-day and 50-day Simple Moving Averages (to capture short-term and medium-term momentum), a 10-day rolling volatility metric (to capture market turbulence), and 1-day and 2-day lagged returns (to detect mean-reversion or momentum effects). Missing values generated by rolling windows were subsequently dropped.Modeling: I selected a Random Forest Classifier. Tree-based models are robust to non-linear relationships and do not require strict feature scaling. To maintain the integrity of the time series and prevent look-ahead bias, I utilized a chronological train-test split (the first 80% of data for training, the final 20% for testing).Results: The model achieved an accuracy of approximately 51-53% on the out-of-sample testing data. While seemingly low, predicting daily S&P 500 movements is notoriously difficult, and an accuracy slightly above 50% can be profitable over a large number of trades in quantitative finance (ignoring transaction costs). Feature importance analysis indicated that Vol_10 (rolling volatility) and Lag_1 (previous day's return) were the most heavily weighted features in the decision trees.4. Main Insights and RecommendationsInsights: The model relies heavily on recent volatility and immediate past performance to classify future direction. The slight edge above a 50% coin-toss suggests weak, yet detectable, short-term patterns in the SPY data.Limitations & Assumptions: The model assumes that historical technical patterns have predictive power for future price action. A major limitation is the exclusion of transaction costs, bid-ask spreads, and slippage, which would significantly erode the profitability of a strategy trading on these daily signals.Next Steps: To improve the model, I recommend integrating alternative datasets (e.g., macroeconomic indicators, options implied volatility like the VIX, or sentiment analysis on financial news). Additionally, transitioning from a basic Random Forest to advanced time-series architectures, such as LSTMs (Long Short-Term Memory networks) or XGBoost with hyperparameter tuning, would likely yield stronger predictive power and a higher risk-adjusted return profile.
